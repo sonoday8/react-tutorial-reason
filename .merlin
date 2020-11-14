@@ -1,0 +1,14 @@
+####{BSB GENERATED: NO EDIT
+B lib/bs
+FLG -open MyReactReason
+FLG -ppx '/home/sonodayoshimasa/.config/nvm/versions/node/v15.1.0/lib/node_modules/bs-platform/linux/bsc.exe -as-ppx -bs-jsx 3'
+S /home/sonodayoshimasa/workspace/react/my-app-reason/node_modules/bs-platform/lib/ocaml
+B /home/sonodayoshimasa/workspace/react/my-app-reason/node_modules/bs-platform/lib/ocaml
+FLG -w +a-4-9-20-40-41-42-50-61-102
+S /home/sonodayoshimasa/workspace/react/my-app-reason/node_modules/reason-react/lib/ocaml
+B /home/sonodayoshimasa/workspace/react/my-app-reason/node_modules/reason-react/lib/ocaml
+S src
+B lib/bs/src
+S src/app
+B lib/bs/src/app
+####BSB GENERATED: NO EDIT}

@@ -1,0 +1,26 @@
+g_root = /home/sonodayoshimasa/workspace/react/my-app-reason
+rule astj
+  command = /home/sonodayoshimasa/.config/nvm/versions/node/v15.1.0/lib/node_modules/bs-platform/linux/bsc.exe  -bs-v 8.3.2 -bs-jsx 3 -bs-super-errors -bs-no-version-header -bs-ast -o $out $i
+o src/index.ast : astj $g_root/src/index.re
+rule deps
+  command = /home/sonodayoshimasa/.config/nvm/versions/node/v15.1.0/lib/node_modules/bs-platform/linux/bsb_helper.exe -hash 53a8c3384f4212cfb4e1f6581680ff7d -bs-ns MyReactReason $in
+  restat = 1
+o src/index.d : deps src/index.ast
+rule mij
+  command = /home/sonodayoshimasa/.config/nvm/versions/node/v15.1.0/lib/node_modules/bs-platform/linux/bsc.exe -bs-ns MyReactReason -I . -I src/app -I src -I /home/sonodayoshimasa/workspace/react/my-app-reason/node_modules/reason-react/lib/ocaml  -bs-super-errors -bs-no-version-header -bs-package-name my-react-reason -bs-package-output commonjs:$in_d:.js -o $out $i
+  dyndep = 1
+  restat = 1
+o src/index-MyReactReason.cmj src/index-MyReactReason.cmi ../../src/index.js : mij src/index.ast
+o src/app/Game.ast : astj $g_root/src/app/Game.re
+o src/app/Game.d : deps src/app/Game.ast
+o src/app/Game-MyReactReason.cmj src/app/Game-MyReactReason.cmi ../../src/app/Game.js : mij src/app/Game.ast
+o src/app/Board.ast : astj $g_root/src/app/Board.re
+o src/app/Board.d : deps src/app/Board.ast
+o src/app/Board-MyReactReason.cmj src/app/Board-MyReactReason.cmi ../../src/app/Board.js : mij src/app/Board.ast
+o src/app/Square.ast : astj $g_root/src/app/Square.re
+o src/app/Square.d : deps src/app/Square.ast
+o src/app/Square-MyReactReason.cmj src/app/Square-MyReactReason.cmi ../../src/app/Square.js : mij src/app/Square.ast
+rule build_package
+  command = /home/sonodayoshimasa/.config/nvm/versions/node/v15.1.0/lib/node_modules/bs-platform/linux/bsc.exe -w -49 -color always -no-alias-deps  $i
+  restat = 1
+o MyReactReason.cmi : build_package MyReactReason.mlmap
